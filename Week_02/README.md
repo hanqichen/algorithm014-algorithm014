@@ -1,6 +1,6 @@
 # 学习笔记
 
-## [思维图谱总结]()
+## [思维图谱总结](https://github.com/hanqichen/algorithm014-algorithm014/blob/master/Week_02/Week2.pdf)
 
 ## 每日练习计划
 
