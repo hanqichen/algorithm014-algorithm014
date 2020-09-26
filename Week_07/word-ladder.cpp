@@ -1,11 +1,6 @@
-# 学习笔记
-
-#### [思维图谱总结](https://github.com/hanqichen/algorithm014-algorithm014/blob/master/Week_06/Week6.pdf)
-
-##### 双向 BFS 模板
- 
-```C++
-int helper(unordered_set<string>& head, unordered_set<string>& tail, unordered_set<string>& dict, int level) {
+class Solution {
+public:
+    int helper(unordered_set<string>& head, unordered_set<string>& tail, unordered_set<string>& dict, int level) {
         if (head.size() > tail.size()) {
             return helper(tail, head, dict, level);
         }
@@ -32,10 +27,20 @@ int helper(unordered_set<string>& head, unordered_set<string>& tail, unordered_s
         }
         return helper(tail, temp, dict, level + 1);
     }
-```
 
-##### 单词搜索 2 时间复杂度分析
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> head, tail;
+        unordered_set<string> dict(wordList.begin(), wordList.end());
 
-虽然存在递归，但是由于有 visit 的存在，从矩阵每个节点出发，矩阵中所有节点只遍历一次。
+        if (dict.find(endWord) == dict.end()) {
+            return 0;
+        }
 
-因此，若矩阵元素个数为n，则时间复杂度为 O(n^2)
+        head.insert(beginWord);
+        tail.insert(endWord);
+        dict.erase(beginWord);
+        dict.erase(endWord);
+
+        return helper(head, tail, dict, 1);
+    }
+};
